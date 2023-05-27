@@ -38,8 +38,8 @@ module StandaloneMigrations
         :migrate_dir  => "db/migrate",
         :root         => Pathname.pwd,
         :seeds        => "db/seeds.rb",
-        :schema       => default_schema
-        :models_path  => "app/models"
+        :schema       => default_schema,
+        :models_path  => "app/models",
       }
       @options = load_from_file(defaults.dup) || defaults.merge(options)
 
