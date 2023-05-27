@@ -101,8 +101,8 @@ module StandaloneMigrations
         :migrate_dir  => (config["db"] || {})["migrate"] || defaults[:migrate_dir],
         :root         => config["root"] || defaults[:root],
         :seeds        => (config["db"] || {})["seeds"] || defaults[:seeds],
-        :schema       => (config["db"] || {})["schema"] || defaults[:schema]
-        :models_path  => (config["path"] || {})["models"] || defaults[:models_path]
+        :schema       => (config["db"] || {})["schema"] || defaults[:schema],
+        :models_path  => (config["path"] || {})["models"] || defaults[:models_path],
       }
     end
 
