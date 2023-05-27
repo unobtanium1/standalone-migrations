@@ -39,6 +39,7 @@ module StandaloneMigrations
         :root         => Pathname.pwd,
         :seeds        => "db/seeds.rb",
         :schema       => default_schema
+        :models_path  => "app/models"
       }
       @options = load_from_file(defaults.dup) || defaults.merge(options)
 
@@ -47,6 +48,7 @@ module StandaloneMigrations
       Rails.application.config.paths["config/database"] = config
       Rails.application.config.paths["db/migrate"] = migrate_dir
       Rails.application.config.paths["db/seeds.rb"] = seeds
+      Rails.application.config.paths["app/models"] = models_path
     end
 
     def config
@@ -69,6 +71,10 @@ module StandaloneMigrations
       @options[:schema]
     end
 
+    def models_path
+      @options[:models_path]
+    end
+    
     def config_for_all
       Configurator.load_configurations.dup
     end
@@ -96,6 +102,7 @@ module StandaloneMigrations
         :root         => config["root"] || defaults[:root],
         :seeds        => (config["db"] || {})["seeds"] || defaults[:seeds],
         :schema       => (config["db"] || {})["schema"] || defaults[:schema]
+        :models_path  => (config["path"] || {})["models"] || defaults[:models_path]
       }
     end
 
