@@ -102,7 +102,7 @@ module StandaloneMigrations
         :root         => config["root"] || defaults[:root],
         :seeds        => (config["db"] || {})["seeds"] || defaults[:seeds],
         :schema       => (config["db"] || {})["schema"] || defaults[:schema],
-        :models_path  => (config["path"] || {})["models"] || defaults[:models_path],
+        :models_path  => (config["paths"] || {})["models"] || defaults[:models_path],
       }
     end
 
