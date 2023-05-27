@@ -41,6 +41,7 @@ module StandaloneMigrations
         :schema       => default_schema,
         :models_path  => "app/models",
         :models_module  => "App::Models",
+        :models_baseclass  => "ApplicationRecord",
       }
       @options = load_from_file(defaults.dup) || defaults.merge(options)
 
@@ -51,6 +52,8 @@ module StandaloneMigrations
       Rails.application.config.paths["db/seeds.rb"] = seeds
       Rails.application.config.model_generation_path = models_path #Rails.configuration.model_generation_path
       Rails.application.config.models_generation_module = models_module #Rails.configuration.models_generation_module
+      Rails.application.config.models_inheritance_baseclass = models_baseclass  #Rails.configuration.models_inheritance_baseclass
+      
     end
 
     def config
@@ -81,6 +84,11 @@ module StandaloneMigrations
       @options[:models_module]
     end
     
+    def models_baseclass
+      @options[:models_baseclass]
+    end
+      
+    
     def config_for_all
       Configurator.load_configurations.dup
     end
@@ -110,6 +118,7 @@ module StandaloneMigrations
         :schema       => (config["db"] || {})["schema"] || defaults[:schema],
         :models_path  => (config["paths"] || {})["models"] || defaults[:models_path],
         :models_module  => (config["modules"] || {})["models"] || defaults[:models_module],
+        :models_baseclass  => (config["models"] || {})["baseclass"] || defaults[:models_baseclass],
       }
     end
 
