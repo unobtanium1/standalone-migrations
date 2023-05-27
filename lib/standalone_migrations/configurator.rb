@@ -48,7 +48,7 @@ module StandaloneMigrations
       Rails.application.config.paths["config/database"] = config
       Rails.application.config.paths["db/migrate"] = migrate_dir
       Rails.application.config.paths["db/seeds.rb"] = seeds
-      Rails.application.config.paths["app/models"] = models_path
+      Rails.application.config.model_generation_path = models_path #Rails.configuration.model_generation_path
     end
 
     def config
